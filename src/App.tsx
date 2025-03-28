@@ -1,17 +1,17 @@
 import { useState } from "react";
 
 const products = [
-  { id: 1, description: "Sardine", packed: false, quantity: 3 },
+  { id: 1, name: "Sardine", packed: false, quantity: 3 },
   {
     id: 2,
 
-    description: "shoes",
+    name: "shoes",
     packed: false,
     quantity: 5,
   },
   {
     id: 3,
-    description: "clothes",
+    name: "clothes",
     packed: false,
     quantity: 15,
   },
@@ -37,6 +37,10 @@ function Form(): any {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
+    if (!description) {
+      return;
+    }
+
     const newItem = {
       description,
       quantity,
@@ -44,6 +48,10 @@ function Form(): any {
       packed: false,
     };
     console.log(newItem);
+
+    // setting to initial state
+    setQuantity(1);
+    setDescription("");
   };
 
   return (
@@ -102,7 +110,7 @@ function Item({ item }: any) {
       <li>
         <span style={item.packed ? { textDecoration: "line-through" } : {}}>
           {item.quantity}
-          {item.description}
+          {item.name}
         </span>
         <button>❌</button>
       </li>
